@@ -4,7 +4,7 @@
 ![Dataset](https://img.shields.io/badge/Synthetic%20Dataset-1M%2B%20Claims-1F7A8C?style=for-the-badge)
 ![Focus](https://img.shields.io/badge/Focus-Cost%20%7C%20Denials%20%7C%20SLA%20%7C%20Risk-2F3C7E?style=for-the-badge)
 
-A portfolio-grade Power BI analytics solution for healthcare payer claims operations. This dashboard turns a large synthetic claims dataset into an executive-ready intelligence layer for monitoring cost, denial trends, SLA performance, payment delays, provider risk, member utilization, and data quality exposure.
+A professional Power BI analytics solution for healthcare payer claims operations. This dashboard turns a large synthetic claims dataset into an executive-ready intelligence layer for monitoring cost, denial trends, SLA performance, payment delays, provider risk, member utilization, and data quality exposure.
 
 ---
 
@@ -119,7 +119,7 @@ Date         -> Claims -> Payments
 
 ## Dataset Notes
 
-This project uses a fully synthetic healthcare payer dataset created for portfolio and practice use. It is inspired by public synthetic healthcare data concepts such as CMS DE-SynPUF and Synthea-style healthcare utilization modeling, but it is not copied from a real hospital, payer, provider, employer, or patient database.
+This project uses a fully synthetic healthcare payer dataset created for analytics practice and business intelligence demonstration. It is inspired by public synthetic healthcare data concepts such as CMS DE-SynPUF and Synthea-style healthcare utilization modeling, but it is not copied from a real hospital, payer, provider, employer, or patient database.
 
 No real patient information, protected health information, company-confidential data, or production claim records are included.
 
@@ -153,11 +153,11 @@ git clone https://github.com/reddy-rbg/Healthcare-Claims-Intelligence-Dashboard.
 
 This dashboard is designed to show how healthcare claims data can move beyond static reporting into an operational control center. It helps leaders spot cost leakage, claims teams identify processing delays, provider network teams monitor denial and quality risk, and analysts validate the reliability of the underlying data before decisions are made.
 
-## Suggested Portfolio Positioning
+## Professional Summary
 
 **Power BI Healthcare Claims Intelligence Dashboard**  
 Built a large-scale Power BI dashboard using a 1M+ row synthetic payer claims dataset, Power Query transformations, star schema modeling, DAX KPIs, drill-through pages, SLA tracking, provider performance analysis, payment delay metrics, and data quality monitoring to analyze claim cost, denials, operational bottlenecks, and provider risk.
 
 ---
 
-Designed for healthcare analytics, payer operations, provider network performance, and business intelligence portfolio demonstration.
+Designed for healthcare analytics, payer operations, provider network performance, and business intelligence demonstration.

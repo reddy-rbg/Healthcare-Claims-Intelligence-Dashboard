@@ -4,7 +4,7 @@
 
 This dataset is NOT taken from a real company, hospital, insurance provider, or patient database.
 
-It is a synthetically generated healthcare claims dataset created for a Power BI portfolio project. The structure is based on a hybrid approach inspired by real-world healthcare payer analytics scenarios and public synthetic healthcare data concepts such as:
+It is a synthetically generated healthcare claims dataset created for a Power BI analytics project. The structure is based on a hybrid approach inspired by real-world healthcare payer analytics scenarios and public synthetic healthcare data concepts such as:
 
 1. CMS DE-SynPUF / Medicare Synthetic Public Use Files
    - Used as inspiration for Medicare-style claims, members, diagnosis, and payment analytics.
@@ -14,7 +14,7 @@ It is a synthetically generated healthcare claims dataset created for a Power BI
    - Used as inspiration for synthetic patient/member healthcare records and healthcare utilization scenarios.
    - Official source: https://synthea.mitre.org/downloads
 
-The actual dataset files in this project were generated synthetically for practice and portfolio use. No real patient information, protected health information, or company-confidential data is included.
+The actual dataset files in this project were generated synthetically for practice and business intelligence demonstration. No real patient information, protected health information, or company-confidential data is included.
 
 ---
 

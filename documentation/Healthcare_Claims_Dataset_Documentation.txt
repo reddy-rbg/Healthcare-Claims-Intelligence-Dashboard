@@ -1,0 +1,405 @@
+# Healthcare Claims Power BI Dataset Documentation
+
+## Dataset Source
+
+This dataset is NOT taken from a real company, hospital, insurance provider, or patient database.
+
+It is a synthetically generated healthcare claims dataset created for a Power BI portfolio project. The structure is based on a hybrid approach inspired by real-world healthcare payer analytics scenarios and public synthetic healthcare data concepts such as:
+
+1. CMS DE-SynPUF / Medicare Synthetic Public Use Files
+   - Used as inspiration for Medicare-style claims, members, diagnosis, and payment analytics.
+   - Official source: https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files
+
+2. Synthea / SyntheticMass synthetic healthcare data
+   - Used as inspiration for synthetic patient/member healthcare records and healthcare utilization scenarios.
+   - Official source: https://synthea.mitre.org/downloads
+
+The actual dataset files in this project were generated synthetically for practice and portfolio use. No real patient information, protected health information, or company-confidential data is included.
+
+---
+
+# Project Title
+
+Healthcare Claims Intelligence Dashboard: Cost, Denials, SLA & Provider Risk Analysis
+
+---
+
+# Business Scenario
+
+A healthcare payer wants to monitor claims cost, denial trends, provider performance, SLA compliance, payment delays, and data quality issues.
+
+The dashboard is designed to help leadership and operations teams answer questions such as:
+
+- Which claim types are driving the highest cost?
+- Which providers have high denial rates?
+- Which regions are missing SLA targets?
+- Which claims are delayed or paid late?
+- Are there duplicate claims or invalid claim amounts?
+- Are out-of-network providers increasing claim cost?
+- Which member groups or plan types are driving higher utilization?
+- What are the overall data quality issues in the claims process?
+
+---
+
+# Dataset Files Included
+
+## 1. Claims.csv
+
+### Purpose
+This is the main fact table of the project. It contains claim-level transaction records.
+
+### Approximate Rows
+1,005,000 rows in the large dataset version.
+
+### Important Columns
+- ClaimID
+- MemberID
+- ProviderID
+- DiagnosisCode
+- ClaimType
+- ServiceDate
+- ClaimDate
+- SubmissionChannel
+- ClaimAmount
+- ApprovedAmount
+- ClaimStatus
+- ProcessingDays
+- SLA_Days
+- SLAStatus
+- DenialReason
+
+### Business Use
+This table is used to analyze claim volume, claim amount, approved amount, claim status, denial trends, processing time, SLA compliance, and data quality problems.
+
+### Problems Included
+- Duplicate ClaimID records
+- Missing ProviderID values
+- Zero and negative ClaimAmount values
+- Blank DenialReason values for some denied claims
+- SLA missed claims
+- High-cost claim outliers
+
+---
+
+## 2. Members.csv
+
+### Purpose
+This is a member dimension table. It contains synthetic member demographic and plan information.
+
+### Approximate Rows
+100,000 rows.
+
+### Important Columns
+- MemberID
+- Age
+- Gender
+- State
+- Region
+- PlanType
+- EnrollmentDate
+- RiskScore
+
+### Business Use
+This table is used to analyze claim trends by member age group, gender, state, region, plan type, and risk score.
+
+### Example Analysis
+- Claim amount by age group
+- Claim volume by plan type
+- High-risk members and cost trends
+- Regional member utilization
+
+---
+
+## 3. Providers.csv
+
+### Purpose
+This is a provider dimension table. It contains synthetic provider information.
+
+### Approximate Rows
+5,000 rows.
+
+### Important Columns
+- ProviderID
+- ProviderName
+- Specialty
+- State
+- Region
+- NetworkStatus
+- ProviderQualityScore
+
+### Business Use
+This table is used to analyze provider performance, provider cost, network impact, denial rates, quality score, and regional provider trends.
+
+### Example Analysis
+- Top providers by claim amount
+- Denial rate by provider
+- In-network vs out-of-network claim cost
+- Provider risk score
+- Provider quality score comparison
+
+---
+
+## 4. Diagnosis.csv
+
+### Purpose
+This is a diagnosis dimension table. It contains synthetic diagnosis codes and categories.
+
+### Approximate Rows
+500 rows.
+
+### Important Columns
+- DiagnosisCode
+- DiagnosisCategory
+- SeverityLevel
+
+### Business Use
+This table is used to analyze claim trends by diagnosis category and severity.
+
+### Example Analysis
+- Claim cost by diagnosis category
+- Denial trends by severity level
+- High-cost diagnosis groups
+- Utilization by disease category
+
+---
+
+## 5. Payments.csv
+
+### Purpose
+This is a payment fact table. It contains payment details for approved and partially approved claims.
+
+### Approximate Rows
+802,045 rows.
+
+### Important Columns
+- PaymentID
+- ClaimID
+- PaymentDate
+- PaidAmount
+- PaymentMethod
+
+### Business Use
+This table is used to analyze payment amount, payment delay, payment method, and paid vs approved amount trends.
+
+### Problems Included
+- Late payments
+- Payment delays after claim approval
+- Paid amount variations
+
+### Example Analysis
+- Paid amount by month
+- Late payment count
+- Payment method distribution
+- Claim-to-payment delay
+
+---
+
+## 6. SLA_Targets.csv
+
+### Purpose
+This is a small dimension table that defines target processing days by claim type.
+
+### Approximate Rows
+8 rows.
+
+### Important Columns
+- ClaimType
+- SLA_Days
+- BusinessPriority
+
+### Business Use
+This table is used to compare actual ProcessingDays against expected SLA_Days.
+
+### Example Analysis
+- SLA compliance percentage
+- SLA missed claims by claim type
+- Claim types with the highest processing delays
+
+---
+
+## 7. Date.csv
+
+### Purpose
+This is a calendar/date dimension table for Power BI time intelligence.
+
+### Approximate Rows
+1,461 rows.
+
+### Important Columns
+- Date
+- Year
+- Quarter
+- MonthNumber
+- MonthName
+- YearMonth
+- Weekday
+- IsWeekend
+
+### Business Use
+This table is used for monthly trends, year-over-year analysis, quarterly reporting, and forecasting.
+
+### Example Analysis
+- Monthly claim amount trend
+- Monthly denial rate
+- Year-over-year claim volume
+- SLA trend over time
+
+---
+
+# Recommended Power BI Data Model
+
+## Fact Tables
+- Claims
+- Payments
+
+## Dimension Tables
+- Members
+- Providers
+- Diagnosis
+- SLA_Targets
+- Date
+
+## Recommended Relationships
+
+1. Claims[MemberID] → Members[MemberID]
+2. Claims[ProviderID] → Providers[ProviderID]
+3. Claims[DiagnosisCode] → Diagnosis[DiagnosisCode]
+4. Claims[ClaimType] → SLA_Targets[ClaimType]
+5. Claims[ClaimDate] → Date[Date]
+6. Payments[ClaimID] → Claims[ClaimID]
+
+Important note:
+Claims.csv intentionally contains duplicate ClaimID records for data quality practice. In Power BI, keep the raw Claims table for data quality reporting, and create a cleaned Claims table in Power Query for final dashboard modeling.
+
+---
+
+# Intentional Data Quality Problems
+
+The dataset includes realistic data quality problems that companies commonly face.
+
+## Problems Included
+
+1. Missing Provider IDs
+   - Some claims do not have ProviderID.
+   - Business impact: claim cannot be mapped to provider performance.
+
+2. Duplicate Claims
+   - Some ClaimID values appear more than once.
+   - Business impact: inflated claim count and possible duplicate payment risk.
+
+3. Invalid Claim Amounts
+   - Some ClaimAmount values are zero or negative.
+   - Business impact: wrong financial reporting and claim validation errors.
+
+4. Blank Denial Reasons
+   - Some denied claims do not have a denial reason.
+   - Business impact: poor denial analysis and incomplete operational reporting.
+
+5. SLA Missed Claims
+   - Some claims have ProcessingDays greater than SLA_Days.
+   - Business impact: operational delays and service-level non-compliance.
+
+6. Late Payments
+   - Some payments are delayed after claim approval.
+   - Business impact: provider dissatisfaction and payment operations backlog.
+
+7. High-Cost Outliers
+   - Some claim amounts are unusually high.
+   - Business impact: potential audit, review, or fraud investigation.
+
+8. Out-of-Network Impact
+   - Out-of-network providers generally have higher costs and denial risk.
+   - Business impact: network leakage and cost management issues.
+
+---
+
+# Recommended Dashboard Pages
+
+## Page 1: Executive Summary
+Show leadership-level KPIs:
+- Total claims
+- Total claim amount
+- Approved amount
+- Paid amount
+- Denial rate
+- SLA compliance percentage
+- Average processing days
+- Data quality score
+
+## Page 2: Claims Operations
+Show operational performance:
+- Claims by status
+- SLA met vs missed
+- Average processing days by claim type
+- Claim backlog trend
+- Denial trend over time
+
+## Page 3: Provider Performance
+Show provider-level insights:
+- Top providers by claim amount
+- Provider denial rate
+- Provider risk score
+- In-network vs out-of-network performance
+- Provider quality score comparison
+
+## Page 4: Member and Plan Analysis
+Show member utilization:
+- Claim cost by age group
+- Claim volume by plan type
+- Claim cost by region
+- Risk score vs claim amount
+
+## Page 5: Data Quality Monitoring
+Show data issues:
+- Missing provider count
+- Duplicate claim count
+- Invalid claim amount count
+- Blank denial reason count
+- Data quality score
+
+## Page 6: Claim Detail Drill-through
+Allow users to drill into individual claims:
+- Claim ID
+- Member ID
+- Provider ID
+- Claim type
+- Status
+- Claim amount
+- Approved amount
+- SLA status
+- Denial reason
+
+---
+
+# Recommended Power BI Skills to Showcase
+
+This project can demonstrate:
+
+- Power Query data cleaning
+- Star schema modeling
+- DAX measures
+- Time intelligence
+- KPI cards
+- Drill-through pages
+- Tooltip pages
+- Bookmarks
+- Slicers and filters
+- Conditional formatting
+- Decomposition tree
+- What-if parameter
+- Forecasting
+- Row-level security
+- Data quality monitoring
+- Performance optimization with a 1M+ row dataset
+
+---
+
+# Suggested Resume Bullet
+
+Built a large-scale Power BI healthcare claims intelligence dashboard using a 1M+ row synthetic payer dataset, Power Query transformations, star schema modeling, DAX measures, drill-through pages, SLA tracking, provider performance analysis, and data-quality KPIs to monitor claim cost, denial trends, payment delays, processing bottlenecks, and potential cost leakage.
+
+---
+
+# Suggested GitHub Description
+
+This project simulates a real healthcare payer analytics environment using a synthetically generated 1M+ row claims dataset inspired by public synthetic healthcare data concepts such as CMS DE-SynPUF and Synthea. The Power BI dashboard analyzes claim cost, denial trends, SLA compliance, payment delays, provider risk, member utilization, and data quality issues.

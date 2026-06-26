@@ -1,0 +1,11 @@
+# Power BI temp files
+*.pbix.lock
+*.tmp
+
+# MCP wrapper scripts (development only)
+powerbi-mcp-wrapper-v3.ps1
+powerbi-mcp-wrapper-v5.ps1
+
+# Old files
+healthcare_dataset/process.pbix
+healthcare_dataset/README.md

@@ -4,7 +4,7 @@
 ![Dataset](https://img.shields.io/badge/Synthetic%20Dataset-1M%2B%20Claims-1F7A8C?style=for-the-badge)
 ![Focus](https://img.shields.io/badge/Focus-Cost%20%7C%20Denials%20%7C%20SLA%20%7C%20Risk-2F3C7E?style=for-the-badge)
 
-A professional Power BI analytics solution for healthcare payer claims operations. This dashboard turns a large synthetic claims dataset into an executive-ready intelligence layer for monitoring cost, denial trends, SLA performance, payment delays, provider risk, member utilization, and data quality exposure.
+Analytics solution for healthcare payer claims operations. This dashboard turns a large synthetic claims dataset into an executive-ready intelligence layer for monitoring cost, denial trends, SLA performance, payment delays, provider risk, member utilization, and data quality exposure.
 
 ---
 
